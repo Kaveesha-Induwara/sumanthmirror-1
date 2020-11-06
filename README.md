@@ -89,6 +89,8 @@ python3 generate_drive_token.py
 ```
 ## Deploying
 
+https://heroku.com/deploy?template=https://github.com/sumanth445/sumanthmirror
+
 - Start docker daemon (skip if already running):
 ```
 sudo dockerd
