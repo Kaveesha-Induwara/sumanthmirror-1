@@ -1,5 +1,5 @@
 {
-    "name": "python-aria-mirror-bot ",
+    "name": "sumanthmirror ",
     "description": "Telegram mirror bot with python",
     "logo": "https://telegra.ph/file/e15e9ac9c5885b015e3ab.jpg",
     "keywords": [
@@ -8,9 +8,9 @@
       "aria",
       "python"
     ],
-    "repository": "https://github.com/magneto261290/magneto-python-aria",
-    "website": "https://github.com/vdarth567/magneto-python-aria",
-    "success_url": "https://github.com/vdarth567/magneto-python-aria/blob/master/README.md",
+    "repository": "https://github.com/sumanth445/sumanthmirror.git",
+    "website": "https://github.com/sumanth445/sumanthmirror/tree/main",
+    "success_url": "https://github.com/sumanth445/sumanthmirror/blob/master/README.md",
     "stack": "container",
     "env": {
       "ENV": {
