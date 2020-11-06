@@ -89,7 +89,7 @@ python3 generate_drive_token.py
 ```
 ## Deploying
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/sumanth445/sumanthmirror)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/sumanth445/sumanthmirror)
 
 - Start docker daemon (skip if already running):
 ```
