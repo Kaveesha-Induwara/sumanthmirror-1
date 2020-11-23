@@ -134,34 +134,22 @@ class MirrorListener(listeners.MirrorListeners):
 
     def onUploadComplete(self, link: str):
         with download_dict_lock:
-            msg = f'<b>○ 🌀 Filename : </b><code>{download_dict[self.uid].name()}</code>\n\n<b>○ 💾 Total Size : </b><code>{download_dict[self.uid].size()}</code>'
-            buttons = button_build.ButtonMaker()
-            buttons.buildbutton("🌍 𝗚-𝗗𝗥𝗜𝗩𝗘 𝗨𝗥𝗟", link)
+            msg = f'<b>Filename:</b> <code>{download_dict[self.uid].name()}</code>\n\n<b>Size:</b> <i>{download_dict[self.uid].size()}</i>\n\n<b>Gdrive Link🔗:</b> {link}'            
             LOGGER.info(f'Done Uploading {download_dict[self.uid].name()}')
             if INDEX_URL is not None:
                 share_url = requests.utils.requote_uri(f'{INDEX_URL}/{download_dict[self.uid].name()}')
                 if os.path.isdir(f'{DOWNLOAD_DIR}/{self.uid}/{download_dict[self.uid].name()}'):
                     share_url += '/'
-                buttons.buildbutton("🏷️ 𝗜𝗡𝗗𝗘𝗫 𝗨𝗥𝗟 🏷️", share_url)
-            if BUTTON_THREE_NAME is not None and BUTTON_THREE_URL is not None:
-                buttons.buildbutton(f"{BUTTON_THREE_NAME}", f"{BUTTON_THREE_URL}")
-            if BUTTON_FOUR_NAME is not None and BUTTON_FOUR_URL is not None:
-                buttons.buildbutton(f"{BUTTON_FOUR_NAME}", f"{BUTTON_FOUR_URL}")
-            if BUTTON_FIVE_NAME is not None and BUTTON_FIVE_URL is not None:
-                buttons.buildbutton(f"{BUTTON_FIVE_NAME}", f"{BUTTON_FIVE_URL}")
-            if self.message.from_user.username:
-                uname = f"@{self.message.from_user.username}"
-            else:
-                uname = f'<a href="tg://user?id={self.message.from_user.id}">{self.message.from_user.first_name}</a>'
-            if uname is not None:
-                msg += f'\n\n<b>○👥 Uploader:</b>👉 {uname}\n\n🔹#Uploaded To Team Drive ✔️\n\n⛔ 𝗗𝗢 𝗡𝗢𝗧 𝗦𝗛𝗔𝗥𝗘 𝗧𝗛𝗘 𝗜𝗡𝗗𝗘𝗫 𝗟𝗜𝗡𝗞 𝗔𝗡𝗬𝗪𝗛𝗘𝗥𝗘 𝗘𝗟𝗦𝗘!\n\n<b>🛡️𝗣𝗼𝘄𝗲𝗿𝗲𝗱 𝗕𝘆:: @FilmClubChannel</b>'
+                msg += f'\n\n<b>Shareable Link🔗:</b> {share_url}\n\nStream Link🖥:{share_url}?a=view'
+            if self.tag is not None:
+                msg += f'\n\ncc: @{self.tag}\n  For More @FC_Links'
             try:
                 fs_utils.clean_download(download_dict[self.uid].path())
             except FileNotFoundError:
                 pass
             del download_dict[self.uid]
             count = len(download_dict)
-        sendMarkup(msg, self.bot, self.update, InlineKeyboardMarkup(buttons.build_menu(2)))
+        sendMessage(msg, self.bot, self.update)
         if count == 0:
             self.clean()
         else:
