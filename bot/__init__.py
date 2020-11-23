@@ -67,7 +67,6 @@ if os.path.exists('authorized_chats.txt'):
 try:
     BOT_TOKEN = getConfig('BOT_TOKEN')
     parent_id = getConfig('GDRIVE_FOLDER_ID')
-    telegraph_token = getConfig('TELEGRAPH_TOKEN')
     DOWNLOAD_DIR = getConfig('DOWNLOAD_DIR')
     if DOWNLOAD_DIR[-1] != '/' or DOWNLOAD_DIR[-1] != '\\':
         DOWNLOAD_DIR = DOWNLOAD_DIR + '/'
@@ -80,51 +79,12 @@ try:
 except KeyError as e:
     LOGGER.error("One or more env variables missing! Exiting now")
     exit(1)
-
-try:
-    MEGA_API_KEY = getConfig('MEGA_API_KEY')
-except KeyError:
-    logging.warning('MEGA API KEY not provided!')
-    MEGA_API_KEY = None
-try:
-    MEGA_EMAIL_ID = getConfig('MEGA_EMAIL_ID')
-    MEGA_PASSWORD = getConfig('MEGA_PASSWORD')
-    if len(MEGA_EMAIL_ID) == 0 or len(MEGA_PASSWORD) == 0:
-        raise KeyError
-except KeyError:
-    logging.warning('MEGA Credentials not provided!')
-    MEGA_EMAIL_ID = None
-    MEGA_PASSWORD = None
 try:
     INDEX_URL = getConfig('INDEX_URL')
     if len(INDEX_URL) == 0:
         INDEX_URL = None
 except KeyError:
     INDEX_URL = None
-try:
-    BUTTON_THREE_NAME = getConfig('BUTTON_THREE_NAME')
-    BUTTON_THREE_URL = getConfig('BUTTON_THREE_URL')
-    if len(BUTTON_THREE_NAME) == 0 or len(BUTTON_THREE_URL) == 0:
-        raise KeyError
-except KeyError:
-    BUTTON_THREE_NAME = None
-    BUTTON_THREE_URL = None
-try:
-    BUTTON_FOUR_NAME = getConfig('BUTTON_FOUR_NAME')
-    BUTTON_FOUR_URL = getConfig('BUTTON_FOUR_URL')
-    if len(BUTTON_FOUR_NAME) == 0 or len(BUTTON_FOUR_URL) == 0:
-        raise KeyError
-except KeyError:
-    BUTTON_FOUR_NAME = None
-    BUTTON_FOUR_URL = None
-try:
-    BUTTON_FIVE_NAME = getConfig('BUTTON_FIVE_NAME')
-    BUTTON_FIVE_URL = getConfig('BUTTON_FIVE_URL')
-    if len(BUTTON_FIVE_NAME) == 0 or len(BUTTON_FIVE_URL) == 0:
-        raise KeyError
-except KeyError:
-    BUTTON_FIVE_NAME = None
-    BUTTON_FIVE_URL = None
 try:
     IS_TEAM_DRIVE = getConfig('IS_TEAM_DRIVE')
     if IS_TEAM_DRIVE.lower() == 'true':
